@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Body
-from typing import List, Any, Union
+from typing import List, Union
 from src.models import Event
 from src.database import DedupStore
 from src.stats import stats
@@ -9,6 +9,7 @@ app = FastAPI(title="Event Aggregator")
 store = DedupStore()
 events = []
 lock = threading.Lock()
+
 
 @app.post("/publish")
 async def publish_event(
@@ -43,7 +44,7 @@ async def publish_event(
         },
     )
 ):
-    # Bisa kirim 1 event atau list event
+    
     event_list = [event_input] if isinstance(event_input, Event) else event_input
 
     for event in event_list:
@@ -65,3 +66,32 @@ async def publish_event(
         "unique_processed": stats.unique_processed,
         "duplicates": stats.duplicate_dropped,
     }
+
+
+@app.get("/events")
+def get_events(topic: str = None):
+    """
+    Endpoint untuk menampilkan daftar event unik yang telah diproses.
+    Bisa difilter berdasarkan topic (?topic=nama_topic)
+    """
+    if topic:
+        filtered = [e for e in events if e["topic"] == topic]
+        return {"count": len(filtered), "events": filtered}
+    return {"count": len(events), "events": events}
+
+
+@app.get("/stats")
+def get_stats():
+    """
+    Endpoint untuk menampilkan statistik event yang diproses.
+    """
+    return stats.as_dict()
+
+
+@app.post("/reset-stats")
+def reset_stats():
+    """
+    Endpoint untuk mereset semua statistik event.
+    """
+    stats.reset()
+    return {"status": "reset", "message": "Semua statistik telah direset."}

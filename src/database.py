@@ -4,9 +4,9 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-# Tentukan folder penyimpanan database
-DATA_DIR = "/app/data"  # aman untuk container
-os.makedirs(DATA_DIR, exist_ok=True)  # pastikan folder ada
+
+DATA_DIR = "/app/data"
+os.makedirs(DATA_DIR, exist_ok=True)
 
 DB_PATH = os.path.join(DATA_DIR, "dedup_store.db")
 
