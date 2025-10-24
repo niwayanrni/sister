@@ -1,4 +1,4 @@
-# 📡 Pub-Sub Aggregator System (Docker-Based)
+# Pub-Sub Aggregator System (Docker-Based)
 
 ## Deskripsi Proyek
 Proyek ini merupakan implementasi **Pub-Sub (Publisher–Subscriber) Aggregator**, yaitu sistem yang menerima pesan dari publisher, menyimpannya, dan menyediakan data agregasi kepada subscriber.  
@@ -15,7 +15,7 @@ Tujuan dari proyek ini antara lain:
 
 ---
 
-## ⚙️ Arsitektur dan Fungsionalitas
+## Arsitektur dan Fungsionalitas
 Sistem terdiri dari satu service utama berbasis **Flask API** yang berperan sebagai **aggregator**.
 
 ### Fungsionalitas Utama
@@ -74,7 +74,7 @@ Hasil ini menunjukkan sistem mampu memproses ribuan event secara stabil dengan m
 
 ---
 
-## 🧾 Kesimpulan
+## Kesimpulan
 Berdasarkan hasil implementasi dan pengujian:
 - Sistem **pub-sub aggregator** berhasil dikembangkan dan dijalankan di lingkungan Docker.  
 - Proses **publish** dan **get stats** berjalan sesuai konsep komunikasi terdistribusi.  
@@ -82,3 +82,7 @@ Berdasarkan hasil implementasi dan pengujian:
 - Pengujian beban menunjukkan performa yang **stabil dan tangguh** dalam menangani ribuan event.  
 
 Proyek ini menjadi dasar yang baik untuk pengembangan sistem **distributed event processing** yang lebih kompleks di masa mendatang.
+
+---
+
+## Link Youtube
